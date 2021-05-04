@@ -12,10 +12,8 @@
         <input class="button" value="Mă simt norocos" type="submit">
     </div>
     <div class='lang'>
-        Google oferit în:  
-        <a href="https://www.google.com/setprefs?sig=0_4ss-NBv-0K-0N43ss7YGPgMicQ0%3D&amp;hl=en&amp;source=homepage&amp;sa=X&amp;ved=0ahUKEwi0mab5qZHwAhXRAmMBHU9fDygQ2ZgBCA8">English</a>
-        <a href="https://www.google.com/setprefs?sig=0_4ss-NBv-0K-0N43ss7YGPgMicQ0%3D&amp;hl=hu&amp;source=homepage&amp;sa=X&amp;ved=0ahUKEwi0mab5qZHwAhXRAmMBHU9fDygQ2ZgBCBA">Magyar</a>
-        <a href="https://www.google.com/setprefs?sig=0_4ss-NBv-0K-0N43ss7YGPgMicQ0%3D&amp;hl=de&amp;source=homepage&amp;sa=X&amp;ved=0ahUKEwi0mab5qZHwAhXRAmMBHU9fDygQ2ZgBCBE">Deutsch</a>
+      Google oferit în:  
+      <a v-for="lang in langs" :key="lang.id" :href="lang.link" >{{lang.title}}</a>
     </div>
   </div>
 </template>
@@ -23,6 +21,27 @@
 <script>
 export default {
   name: "HelloWorld",
+  data: function () {
+    return {
+      langs: [
+        {
+          id: 0,
+          title: "English",
+          link: "https://www.google.com/setprefs?sig=0_4ss-NBv-0K-0N43ss7YGPgMicQ0%3D&amp;hl=en&amp;source=homepage&amp;sa=X&amp;ved=0ahUKEwi0mab5qZHwAhXRAmMBHU9fDygQ2ZgBCA8"
+        },
+        {
+          id: 1,
+          title: "Magyar",
+          link: "https://www.google.com/setprefs?sig=0_4ss-NBv-0K-0N43ss7YGPgMicQ0%3D&amp;hl=hu&amp;source=homepage&amp;sa=X&amp;ved=0ahUKEwi0mab5qZHwAhXRAmMBHU9fDygQ2ZgBCA8"
+        },
+        {
+          id: 2,
+          title: "Deutsch",
+          link: "https://www.google.com/setprefs?sig=0_4ss-NBv-0K-0N43ss7YGPgMicQ0%3D&amp;hl=de&amp;source=homepage&amp;sa=X&amp;ved=0ahUKEwi0mab5qZHwAhXRAmMBHU9fDygQ2ZgBCA8"
+        }
+      ]
+    }
+  },
   props: {
     msg: String,
   },
