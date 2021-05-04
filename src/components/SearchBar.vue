@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <img class='title-gif' title="Ziua Pământului 2021" src="https://www.google.com/logos/doodles/2021/earth-day-2021-6753651837108909-vacta.gif" />
+    <img class='title-gif' title="Ziua Pământului 2021" src="https://www.google.com/logos/doodles/2021/geta-bratescus-95th-birthday-6753651837108375.2-l.png" />
     <div class='input-box'>
         <svg class='search-icon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
         <input type="text" class='search-input'>
@@ -32,95 +32,96 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .container {
-    margin: 50px 15px 0;
-}
-.title-gif {
-    width: 300px;
-    display: block;
-    margin: 0 auto;
-    border-radius: 20px
-}
-.input-box {
+  margin: 50px 15px 0;  
+  .title-gif {
+      width: 400px;
+      display: block;
+      margin: 0 auto;
+      border-radius: 20px
+  }
+  .input-box {
     display: flex;
     position: relative;
     width: 580px;
     margin: 30px auto 20px;
-}
-.input-box .search-icon {
-    position: absolute;
-    width: 20px;
-    height: 100%;
-    fill: #9AA0A6;
-    left: 20px;
-}
-.input-box .mic-icon {
-    position: absolute;
-    width: 24px;
-    height: 100%;
-    right: 16px;
-    cursor: pointer;
-}
-.input-box .keyboard-icon {
-    position: absolute;
-    right: 60px;
-    cursor: pointer;
-}
-
-.input-box .keyboard-icon img {
-    padding: 15px 0;
-}
-.search-input {
-    width: 580px;
-    display: block;
-    color: rgba(0, 0, 0, .87);
-    padding: 0 100px 0 50px;
-    height: 42px;
-    border-radius: 20px;
-    border: 1px solid #E5E6EA;
-    font-family: arial;
-    font-size: 14px;
-}
-.search-input:hover, .search-input:focus  {
-    outline: 0;
-    box-shadow: 0 1px 6px rgba(32, 33, 36, .28);
-}
-.center-buttons {
+    .search-icon {
+      position: absolute;
+      width: 20px;
+      height: 100%;
+      fill: #9AA0A6;
+      left: 20px;
+    }
+    .mic-icon {
+      position: absolute;
+      width: 24px;
+      height: 100%;
+      right: 16px;
+      cursor: pointer;
+    }
+    .keyboard-icon {
+      position: absolute;
+      right: 60px;
+      cursor: pointer;
+    }
+    .keyboard-icon {
+      img {
+        padding: 15px 0;
+      }
+    }
+    .search-input {
+      width: 580px;
+      display: block;
+      color: rgba(0, 0, 0, .87);
+      padding: 0 100px 0 50px;
+      height: 42px;
+      border-radius: 20px;
+      border: 1px solid #E5E6EA;
+      font-family: arial;
+      font-size: 14px;
+      &:hover, &:focus  {
+        outline: 0;
+        box-shadow: 0 1px 6px rgba(32, 33, 36, .28);
+      }
+    }
+  }
+  .center-buttons {
     margin: 0 auto;
     width: max-content;
-}
-.center-buttons .button {
-    background-color: #f8f9fa;
-    border: 1px solid #f8f9fa;
-    border-radius: 4px;
-    color: #3c4043;
-    font-family: arial;
-    font-size: 14px;
-    margin: 11px 4px;
-    padding: 0 16px;
-    line-height: 27px;
-    height: 36px;
-    min-width: 54px;
-    text-align: center;
-    cursor: pointer;
-    user-select: none;
-}
-.center-buttons .button:hover {
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
-    background-color: #f8f9fa;
-    border: 1px solid #dadce0;
-    color: #202124;
-}
-.lang {
+    .button {
+      background-color: #f8f9fa;
+      border: 1px solid #f8f9fa;
+      border-radius: 4px;
+      color: #3c4043;
+      font-family: arial;
+      font-size: 14px;
+      margin: 11px 4px;
+      padding: 0 16px;
+      line-height: 27px;
+      height: 36px;
+      min-width: 54px;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      &:hover {
+        box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+        background-color: #f8f9fa;
+        border: 1px solid #dadce0;
+        color: #202124;
+      }
+    }
+  }
+  .lang {
     margin: 20px auto 0;
     width: max-content;
     font-family: arial;
     font-size: 13px;
-}
-.lang a {
-    text-decoration: none;
-    margin-left: 5px;
-}
-.lang a:hover {
-    text-decoration: underline;
+    a {
+      text-decoration: none;
+      margin-left: 5px;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }
 </style>
