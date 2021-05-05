@@ -51,7 +51,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .container {
-  margin: 50px 15px 0;  
+  // margin: 50px 15px 0;
   .title-gif {
       width: 400px;
       display: block;
@@ -140,6 +140,22 @@ export default {
       &:hover {
         text-decoration: underline;
       }
+    }
+  }
+  @media only screen and (max-width: 767px) {
+    .input-box {
+      width: 100%;
+      .search-input {
+        width: 100%;
+      }
+    }
+    .center-buttons .button {
+        display: block;
+    }
+    .lang a {
+        display: block;
+        text-align: center;
+        margin-top: 6px;
     }
   }
 }
