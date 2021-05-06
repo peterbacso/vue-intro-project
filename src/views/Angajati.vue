@@ -1,13 +1,15 @@
 <template>
   <div class="angajati">
-    <img alt="Vue logo" src="../assets/logo.png" />
     <table>
       <thead>
         <tr>
           <td>id</td>
           <td>firstname</td>
           <td>lastname</td>
+          <td>birthdate</td>
+          <td>gender</td>
           <td>email</td>
+          <td>delete</td>
         </tr>
       </thead>
       <tbody v-if="angajati.length > 0">
@@ -15,24 +17,62 @@
           <td>{{angajat.id}}</td>
           <td>{{angajat.firstName}}</td>
           <td>{{angajat.lastName}}</td>
+          <td>{{angajat.birthdate}}</td>
+          <td>{{angajat.gender}}</td>
           <td>{{angajat.email}}</td>
+          <td @click="deleteEmployee()">delete</td>
         </tr>
       </tbody>
       <tbody v-else>
         <td>No angajati to display.</td>
       </tbody>
     </table>
+    <div id="form">
+      <!-- Nume -->
+      <label for="nume">Nume: </label>
+      <input type="text" v-model="newAngajat.firstName" id="nume" name="nume"><br>
+      <!-- Prenume -->
+      <label for="prenume">Prenume: </label>
+      <input type="text" v-model="newAngajat.lastName" id="prenume" name="prenume"><br>
+      <!-- Data Nasterii -->
+      <label for="data-nasterii">Data nasterii:</label>
+      <input type="date" v-model="newAngajat.birthdate" id="data-nasterii" name="data-nasterii"><br>
+      <!-- Gender -->
+      <label for="sex">Gender: </label>
+      <select id="sex" v-model="newAngajat.gender" name="gender">
+          <option value="" disabled selected>Select your option</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+      </select><br>
+      <!-- Email -->
+      <label for="email">Email:</label>
+      <input type="email" v-model="newAngajat.email" id="email" name="email"><br>
+      <br><br>
+      <!-- Submit -->
+      <button type="button" @click="addEmployee()">Submit</button>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import { useToast } from "vue-toastification";
+
 
 export default {
   name: "Angajati",
   data() {
     return {
       angajati: [],
+      newAngajat: {
+        firstName: "",
+        lastName: "",
+        birthdate: "",
+        gender: "",
+        email: "",
+        picture: "defaultPic",
+      }
     }
   },
   created() {
@@ -47,7 +87,35 @@ export default {
       .catch(e => {
         this.errors.push(e)
       })
+    },
+    addEmployee() {
+      for (const key of Object.entries(this.newAngajat)) {
+        if(key[1] == "") {
+          console.log(this.newAngajat);
+          return this.toast.warning("Fill in all fields!", this.$store.state.toastConfig);
+        }
+      }
+      if(this.validateEmail(this.newAngajat.email) == false) {
+        return this.toast.warning("Email format not valid.", this.$store.state.toastConfig);
+      }
+      axios.post(`https://localhost:5001/employee/Employee`, this.newAngajat)
+      .then(response => {
+        console.log(response.data)
+        this.angajati.push(response.data)
+      })
+      .catch(e => {
+        console.log(e)
+        this.errors.push(e)
+      })
+    },
+    validateEmail(email) {
+      const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
     }
+  },
+  setup() {
+    const toast = useToast();
+    return { toast };
   }
 };
 </script>

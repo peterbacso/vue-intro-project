@@ -17,7 +17,7 @@ export default {
   components: {
     Header,
     SearchBar,
-    Footer
+    Footer,
   },
 };
 </script>
