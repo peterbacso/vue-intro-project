@@ -59,7 +59,6 @@
 import axios from "axios";
 import { useToast } from "vue-toastification";
 
-
 export default {
   name: "Angajati",
   data() {
@@ -91,7 +90,6 @@ export default {
     addEmployee() {
       for (const key of Object.entries(this.newAngajat)) {
         if(key[1] == "") {
-          console.log(this.newAngajat);
           return this.toast.warning("Fill in all fields!", this.$store.state.toastConfig);
         }
       }
