@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import Google from "../views/Google.vue";
+import Angajati from "../views/Angajati.vue";
 
 const routes = [
   {
@@ -21,6 +22,11 @@ const routes = [
     path: "/google",
     name: "Google",
     component: Google,
+  },
+  {
+    path: "/angajati",
+    name: "Angajati",
+    component: Angajati,
   },
 ];
 
