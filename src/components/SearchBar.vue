@@ -66,6 +66,10 @@ export default {
         {
           id: 3,
           text: "am i an alcoholic?"
+        },
+        {
+          id: 4,
+          text: "terapie manele"
         }
       ]
     }
