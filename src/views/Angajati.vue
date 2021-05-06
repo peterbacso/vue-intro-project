@@ -20,7 +20,7 @@
           <td>{{angajat.birthdate}}</td>
           <td>{{angajat.gender}}</td>
           <td>{{angajat.email}}</td>
-          <td @click="deleteEmployee()">delete</td>
+          <td @click="deleteEmployee(angajat.id)">delete</td>
         </tr>
       </tbody>
       <tbody v-else>
@@ -102,10 +102,27 @@ export default {
       .then(response => {
         console.log(response.data)
         this.angajati.push(response.data)
+        this.toast.success("Employee added.", this.$store.state.toastConfig);
+      })
+      .catch(e => {
+        this.toast.error("Something went wrong.", this.$store.state.toastConfig);
+        console.log(e)
+        this.errors.push(e)
+      })
+    },
+    deleteEmployee(id) {
+      axios.delete(`https://localhost:5001/employee/Employee/` + id)
+      .then(() => {
+        const index = this.angajati.map(item => item.id).indexOf(id);
+        if (index > -1) {
+          this.angajati.splice(index, 1);
+        }
+        this.toast.success("Employee deleted.", this.$store.state.toastConfig);
       })
       .catch(e => {
         console.log(e)
         this.errors.push(e)
+        this.toast.error("Something went wrong.", this.$store.state.toastConfig);
       })
     },
     validateEmail(email) {
