@@ -10,13 +10,16 @@
           <td>email</td>
         </tr>
       </thead>
-      <tbody>
+      <tbody v-if="angajati.length > 0">
         <tr v-for="angajat in angajati" :key="angajat.id">
           <td>{{angajat.id}}</td>
           <td>{{angajat.firstName}}</td>
           <td>{{angajat.lastName}}</td>
           <td>{{angajat.email}}</td>
         </tr>
+      </tbody>
+      <tbody v-else>
+        <td>No angajati to display.</td>
       </tbody>
     </table>
   </div>
