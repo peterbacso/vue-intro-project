@@ -17,7 +17,7 @@
           <td>{{angajat.id}}</td>
           <td>{{angajat.firstName}}</td>
           <td>{{angajat.lastName}}</td>
-          <td>{{angajat.birthdate}}</td>
+          <td>{{convertDateFormat(angajat.birthdate)}}</td>
           <td>{{angajat.gender}}</td>
           <td>{{angajat.email}}</td>
           <td @click="deleteEmployee(angajat.id)">delete</td>
@@ -58,6 +58,7 @@
 <script>
 import axios from "axios";
 import { useToast } from "vue-toastification";
+import moment from "moment";
 
 export default {
   name: "Angajati",
@@ -78,6 +79,10 @@ export default {
     this.getEmployees()
   }, 
   methods: {
+    convertDateFormat(date) {
+      moment.locale('ro')
+      return moment(date).format('LL')
+    },
     getEmployees() {
       axios.get(`https://localhost:5001/employee/Employee`)
       .then(response => {
@@ -136,17 +141,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
-table {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  &, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-  }
-  th, td {
-    padding: 15px;
-    text-align: left;
-  }
-}
+// table {
+//   width: 100%;
+//   max-width: 900px;
+//   margin: 20px auto 50px;
+//   &, th, td {
+//     border: 1px solid black;
+//     border-collapse: collapse;
+//   }
+//   th, td {
+//     padding: 15px;
+//     text-align: left;
+//   }
+// }
 </style>
