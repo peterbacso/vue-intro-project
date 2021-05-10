@@ -78,9 +78,6 @@ export default {
     msg: String,
   },
   methods: {
-    inputClick(){
-      console.log("clickkkk");
-    },
     myFilter: function() {
       this.isActive = !this.isActive;
     }
