@@ -1,5 +1,9 @@
 <template>
   <div class="angajati">
+    <div class="searchTable">
+      <p>Search by firstname:</p>
+      <input type="text" v-model="searchEmployee" id="filterInput" name="filterInput">
+    </div>
     <table>
       <thead>
         <tr>
@@ -13,7 +17,7 @@
         </tr>
       </thead>
       <tbody v-if="angajati.length > 0">
-        <tr v-for="angajat in angajati" :key="angajat.id">
+        <tr v-for="angajat in filteredClients" :key="angajat.id">
           <td>{{angajat.id}}</td>
           <td>{{angajat.firstName}}</td>
           <td>{{angajat.lastName}}</td>
@@ -64,6 +68,7 @@ export default {
   name: "Angajati",
   data() {
     return {
+      searchEmployee: "",
       angajati: [],
       newAngajat: {
         firstName: "",
@@ -73,6 +78,13 @@ export default {
         email: "",
         picture: "defaultPic",
       }
+    }
+  },
+  computed: {
+    filteredClients() {
+      const search = this.searchEmployee.toLowerCase().trim();
+      if (!search) return this.angajati;
+      return this.angajati.filter(c => c.firstName.toLowerCase().indexOf(search) > -1);
     }
   },
   created() {
@@ -146,6 +158,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.searchTable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  p {
+    margin-block: 0;
+    margin-right: 10px;
+  }
+}
 table {
   width: 100%;
   max-width: 900px;
