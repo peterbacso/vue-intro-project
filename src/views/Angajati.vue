@@ -84,7 +84,7 @@ export default {
       return moment(date).format('LL')
     },
     getEmployees() {
-      axios.get(`https://localhost:5001/employee/Employee`)
+      axios.get(this.$store.state.apiUrl + "/employee/Employee")
       .then(response => {
         this.angajati = response.data
       })
@@ -101,20 +101,26 @@ export default {
       if(this.validateEmail(this.newAngajat.email) == false) {
         return this.toast.warning("Email format not valid.", this.$store.state.toastConfig);
       }
-      axios.post(`https://localhost:5001/employee/Employee`, this.newAngajat)
+      axios.post(this.$store.state.apiUrl + "/employee/Employee", this.newAngajat)
       .then(response => {
-        console.log(response.data)
         this.angajati.push(response.data)
         this.toast.success("Employee added.", this.$store.state.toastConfig);
+        this.newAngajat = {
+          firstName: "",
+          lastName: "",
+          birthdate: "",
+          gender: "",
+          email: "",
+          picture: "defaultPic",
+        }
       })
       .catch(e => {
         this.toast.error("Something went wrong.", this.$store.state.toastConfig);
-        console.log(e)
         this.errors.push(e)
       })
     },
     deleteEmployee(id) {
-      axios.delete(`https://localhost:5001/employee/Employee/` + id)
+      axios.delete(this.$store.state.apiUrl + "/employee/Employee/" + id)
       .then(() => {
         const index = this.angajati.map(item => item.id).indexOf(id);
         if (index > -1) {
@@ -123,7 +129,6 @@ export default {
         this.toast.success("Employee deleted.", this.$store.state.toastConfig);
       })
       .catch(e => {
-        console.log(e)
         this.errors.push(e)
         this.toast.error("Something went wrong.", this.$store.state.toastConfig);
       })
@@ -141,17 +146,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
-// table {
-//   width: 100%;
-//   max-width: 900px;
-//   margin: 20px auto 50px;
-//   &, th, td {
-//     border: 1px solid black;
-//     border-collapse: collapse;
-//   }
-//   th, td {
-//     padding: 15px;
-//     text-align: left;
-//   }
-// }
+table {
+  width: 100%;
+  max-width: 900px;
+  margin: 20px auto 50px;
+  &, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 15px;
+    text-align: left;
+  }
+}
 </style>

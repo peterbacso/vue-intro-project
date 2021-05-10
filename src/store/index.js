@@ -2,6 +2,7 @@ import { createStore } from "vuex";
 
 export default createStore({
   state: {
+    apiUrl: "https://localhost:5001",
     toastConfig: {
       position: "top-right",
       timeout: 5000,
